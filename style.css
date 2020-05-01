@@ -1,0 +1,110 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    box-sizing: border-box;
+    font-family: sans-serif;
+    height: 110vh;
+}
+.container{
+    position: relative;
+    margin: 50px auto;
+    width: 400px;
+    height: 400px;
+}
+.playground{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    outline: 1px solid black;
+    border-radius: 50%;
+    animation: 5s circle alternate infinite ;    
+}
+.image{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: url("https://images.unsplash.com/photo-1588282322673-c31965a75c3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;   
+    z-index: 1;
+    
+}
+.block{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #33e;
+    z-index: -1;
+}
+.pointControl{
+    position: relative;
+    width: 50%;
+    left: 50%;
+    margin-top: 20px;
+}
+.pointControl div{
+    display: inline-block;
+    position: relative;
+    transform: translateX(-50%);
+}
+.pointControl input{
+    padding: 5px;
+    outline: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 2px groove #33e;
+}
+.pointControl a{
+    font-weight: 600;
+    padding: 15px;
+    cursor: pointer;
+}
+code.active{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    background: rgb(26, 26, 26);
+    color: white;
+}
+.edit{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.edit input{
+    margin-top: 10px;
+    border: 0px;
+    outline: 0px;
+    border-bottom: 2px groove #33e;
+    padding: 5px;
+}
+.edit a{
+    font-weight: 600;
+    padding: 15px;
+    cursor: pointer;
+}
+#picField{
+    position: fixed;
+    top: 20px;
+    padding: 20px;
+}
+#URL{
+    position: fixed;
+    top: 100px;
+    padding: 20px;
+}
+#URL input{
+    padding: 5px;
+}
+#URL a{
+    font-weight: 600;
+    cursor: pointer;
+}
