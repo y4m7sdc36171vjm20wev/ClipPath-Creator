@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>Eh.</title>
+</head>
+
+<body>
+  <div class="container">
+  <div class="playground" id="play">
+    <img class="image" id="image">
+    <div class="block">
+    </div>
+  </div>
+  </div>
+  <div class="pointControl">
+    <div>
+      <input type="text" id="plot" placeholder="X Y (optional. GRID)">
+      <a onclick="Plot()">Plot</a>
+    </div>
+  </div>
+
+  <div class="edit">
+    <div class="content">
+      Selected Point: <span id="selectedPoint"> </span> <br>
+      <div class="editor">
+        <input type="text" id="upd" placeholder="X Y (optional. GRID)"><a onclick="update()">Update</a>
+      </div>
+    </div>
+  </div>
+  <input type="file" id="picField"/>
+  <div id="URL">
+  <input type="text" id="wo" placeholder="URL"/> <a onclick="picLink()">Get</a>
+  <br><BR>
+  Press 's' to activate selectMode.<br>
+  Press 'z' to undo.
+  </div>
+  <code class="result" id="result">
+  </code>
+
+  <script>
+
+    let example = new JClip("play", "result");
+
+    let clippedItem = document.querySelectorAll(".block")[0];
+    let Selected = document.querySelectorAll("#selectedPoint")[0];
+
+    setInterval(() => {
+      clippedItem.style = example.clipPath;
+      if (example.selectedPoint != null) {
+        Selected.innerHTML = example.selectedPoint + 1;
+      }
+      if (example.selectMode === true) {
+        clippedItem.style = "background: darkblue;";
+      }
+
+    }, 500);
+
+    function Plot() {
+      let values = document.getElementById("plot").value;
+      values = values.split(" ");
+      if (values.length >= 2 && values.length <= 3) {
+        if (values.length === 3) {
+          example.manualPoint(values[0], values[1], values[2]);
+        } else {
+          example.manualPoint(values[0], values[1]);
+        }
+
+      }
+
+    }
+
+    function update() {
+      if (example.selectedPoint != null) {
+        let values = document.getElementById("upd").value;
+        values = values.split(" ");
+        if (values.length >= 2 && values.length <= 3) {
+          if (values.length === 2) {
+            example.update(values[0], values[1], example.selectedPoint + 1);
+          }
+          if (values.length === 3) {
+            example.update(values[0], values[1], example.selectedPoint + 1, values[2]);
+          }
+
+        }
+      }
+
+    }
+
+    document.getElementById('picField').onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById("image").src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+    else {
+
+    }
+}
+
+function picLink(){
+  document.getElementById("image").src = document.getElementById("wo").value;
+
+}
+  </script>
+</body>
+
+</html>
